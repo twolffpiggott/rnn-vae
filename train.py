@@ -48,7 +48,7 @@ mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 with tf.Session() as sess:
     tf.initialize_all_variables().run()
     for e in range(args.num_epochs):
-        print "epoch %d" % e
+        print("epoch %d" % e)
         for b in range(args.num_batches):
             batch = mnist.train.next_batch(args.batch_size)
             x = np.reshape(batch[0], [args.batch_size, args.width, args.height, 1])
@@ -56,7 +56,7 @@ with tf.Session() as sess:
                                                 feed_dict={model.x: x})
             sess.run(model.optimizer, feed_dict={model.x: x})
             if b % 100 == 0:
-                print 'batches %d, loss %g (re: %g, kl: %g)' % (b, loss, re_loss, kl_loss)
+                print('batches %d, loss %g (re: %g, kl: %g)' % (b, loss, re_loss, kl_loss))
     batch = mnist.test.next_batch(args.batch_size)
     x = np.reshape(batch[0], [args.batch_size, args.width, args.height, 1])
     if args.type == 'CNN':
