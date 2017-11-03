@@ -38,9 +38,9 @@ class RNN_VAE_Model():
                 if args.mode == 'only x_hat':
                     h_enc, enc_state = cell_enc(x_hat, enc_state)
                 if args.mode == 'x with x_hat':
-                    h_enc, enc_state = cell_enc(tf.concat(1, [x_reshape, x_hat]), enc_state)
+                    h_enc, enc_state = cell_enc(tf.concat(axis=1, values=[x_reshape, x_hat]), enc_state)
                 if args.mode == 'x with x_hat and h_dec_prev':
-                    h_enc, enc_state = cell_enc(tf.concat(1, [x_reshape, x_hat, h_dec_prev]), enc_state)
+                    h_enc, enc_state = cell_enc(tf.concat(axis=1, values=[x_reshape, x_hat, h_dec_prev]), enc_state)
 
             mu[t] = tf.matmul(h_enc, w_mu) + b_mu  # [z_size]
             logsigma[t] = tf.matmul(h_enc, w_sigma) + b_sigma  # [z_size]

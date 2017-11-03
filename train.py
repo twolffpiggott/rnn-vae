@@ -86,4 +86,5 @@ with tf.Session() as sess:
                 axes.set_xticks([])
                 axes.set_yticks([])
                 plt.imshow(c[t][i].reshape(args.width, args.height), cmap="gray", interpolation='nearest')
+        plt.savefig(f'results/rnn-vae_{args.num_epochs}epochs_zsize{args.z_size}.png')
         plt.show()
